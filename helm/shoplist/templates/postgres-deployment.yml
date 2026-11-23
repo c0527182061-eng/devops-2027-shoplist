@@ -23,6 +23,13 @@ spec:
                 name: postgres-secret          # name of the Secret (postgres-secret.yml)
           ports:
             - containerPort: 5432   # postgres port
+          resources:
+            requests:
+              cpu: {{ .Values.postgres.resources.requests.cpu | quote }}
+              memory: {{ .Values.postgres.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.postgres.resources.limits.cpu | quote }}
+              memory: {{ .Values.postgres.resources.limits.memory }}  
           readinessProbe:
             exec:
               command: ["pg_isready", "-U", "shopuser", "-d", "shoplist"]   # user and database from the Secret, plain text

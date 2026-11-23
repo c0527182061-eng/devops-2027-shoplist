@@ -30,3 +30,10 @@ spec:
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 10
+          resources:
+            requests:
+              cpu: {{ .Values.stats.resources.requests.cpu | quote }}
+              memory: {{ .Values.stats.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.stats.resources.limits.cpu | quote }}
+              memory: {{ .Values.stats.resources.limits.memory }}  
